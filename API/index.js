@@ -27,59 +27,59 @@ app.use(express.static('uploads'));
 var origin = '*';
 
 // CORS middleware
-const allowCrossDomain = function(req, res, next) {
-  var allowedOrigins = [
-      '44.201.26.19'
-  ];
-  origin = req.headers.origin;
-
-  if (allowedOrigins.indexOf(origin) > -1) {
+const allowCrossDomain = function (req, res, next) {
+    var allowedOrigins = [
+        '3.238.42.153'
+    ];
     origin = req.headers.origin;
-  } else {
-    origin = '*';
-  }
 
-  console.log('******************************************');
-  console.log('******************************************');
-  console.log('*********** Cors Request logs ************');
-  console.log('******************************************');
-  console.log('******************************************');
+    if (allowedOrigins.indexOf(origin) > -1) {
+        origin = req.headers.origin;
+    } else {
+        origin = '*';
+    }
 
-  console.log(origin);
+    console.log('******************************************');
+    console.log('******************************************');
+    console.log('*********** Cors Request logs ************');
+    console.log('******************************************');
+    console.log('******************************************');
 
-  res.header('Access-Control-Allow-Origin', origin);
-  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-  res.header('Access-Control-Allow-Headers', 'Content-Type, X-Requested-With, Access-Control-Allow-Headers');
-  res.header('Access-Control-Allow-Credentials', true);
-  res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
-  next();
+    console.log(origin);
+
+    res.header('Access-Control-Allow-Origin', origin);
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+    res.header('Access-Control-Allow-Headers', 'Content-Type, X-Requested-With, Access-Control-Allow-Headers');
+    res.header('Access-Control-Allow-Credentials', true);
+    res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
+    next();
 };
 app.use(allowCrossDomain);
 app.use((req, res, next) => {
 
-  if (req.method === 'OPTIONS') {
-  console.log('!OPTIONS');
-  console.log('******************************************');
-  console.log('******************************************');
-  console.log('*********** Cors Request logs 1************');
-  console.log('******************************************');
-  console.log('******************************************');
-  console.log(origin);
-  console.log(req.headers.origin);
-  var headers = {};
-  // IE8 does not allow domains to be specified, just the *
-  // headers["Access-Control-Allow-Origin"] = req.headers.origin;
-  headers['Access-Control-Allow-Origin'] = origin;
-  // headers["Access-Control-Allow-Origin"] = "*";
-  headers['Access-Control-Allow-Methods'] = 'POST, GET, PUT, DELETE';
-  headers['Access-Control-Allow-Credentials'] = true;
-  headers['Access-Control-Allow-Headers'] = 'Content-Type, X-Requested-With, Access-Control-Allow-Headers';
-  headers['Cache-Control'] = 'private, no-cache, no-store, must-revalidate';
-  res.writeHead(200, headers);
-  res.end();
-} else {
-  return next();
-}
+    if (req.method === 'OPTIONS') {
+        console.log('!OPTIONS');
+        console.log('******************************************');
+        console.log('******************************************');
+        console.log('*********** Cors Request logs 1************');
+        console.log('******************************************');
+        console.log('******************************************');
+        console.log(origin);
+        console.log(req.headers.origin);
+        var headers = {};
+        // IE8 does not allow domains to be specified, just the *
+        // headers["Access-Control-Allow-Origin"] = req.headers.origin;
+        headers['Access-Control-Allow-Origin'] = origin;
+        // headers["Access-Control-Allow-Origin"] = "*";
+        headers['Access-Control-Allow-Methods'] = 'POST, GET, PUT, DELETE';
+        headers['Access-Control-Allow-Credentials'] = true;
+        headers['Access-Control-Allow-Headers'] = 'Content-Type, X-Requested-With, Access-Control-Allow-Headers';
+        headers['Cache-Control'] = 'private, no-cache, no-store, must-revalidate';
+        res.writeHead(200, headers);
+        res.end();
+    } else {
+        return next();
+    }
 });
 
 app.get('/', (req, res) => {
