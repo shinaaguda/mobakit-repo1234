@@ -36,7 +36,7 @@ export class ConfirmationComponent implements OnInit {
     console.log("Logged User", this.loggeduser)
     console.log("Customer ID", customer_id)
     console.log("stored", this.stored)
-    this.http.post('mobikart-lb-1573708540.us-east-1.elb.amazonaws.com/getOrderData', JSON.stringify({ customer: customer_id, puchase_time: time }), { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) }).subscribe((res) => {
+    this.http.post('http://mobikart-lb-1573708540.us-east-1.elb.amazonaws.com/getOrderData', JSON.stringify({ customer: customer_id, puchase_time: time }), { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) }).subscribe((res) => {
       this.model = res
       console.log("getOrderData Response", (this.model.data))
       this.newDate = new Date(this.model.data[0].PURCHASE_DATE)
