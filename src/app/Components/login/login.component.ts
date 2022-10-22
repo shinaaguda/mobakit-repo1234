@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
   CustomerLogin(regForm: any) {
     const data = JSON.stringify(this.model)
     console.log(data);
-    this.http.post('http://mobikart-alb-1593047197.us-east-1.elb.amazonaws.com/processLogin', data, { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) }).subscribe((res) => {
+    this.http.post('mobikart-lb-1573708540.us-east-1.elb.amazonaws.com/processLogin', data, { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) }).subscribe((res) => {
 
       this.result = res
       if (this.result.success) {
